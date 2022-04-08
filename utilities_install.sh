@@ -9,7 +9,7 @@ pip install ImageScraper
 #Terminal Image Viewer(tiv)
 
 sudo apt install imagemagick
-git clone httpshttps://github.com/stefanhaustein/TerminalImageViewer.git
+git clone https://github.com/stefanhaustein/TerminalImageViewer.git
 cd TerminalImageViewer/src/main/cpp
 make
 sudo make install
