@@ -1,5 +1,5 @@
 #!/bin/bash
-# Usage: curl https://raw.githubusercontent.com/kris-classes/restart-s1-2022-JinZhuAW/main/utilities_install.sh | bash
+# Usage: curl https://raw.githubusercontent.com/JinZhuAW/PokemonGuessingGame/main/utilities_install.sh | bash
 # echo "Bash script to install all three packages Joe will present in the class."
 
 #Image Scraper
