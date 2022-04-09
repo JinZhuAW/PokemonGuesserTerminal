@@ -9,4 +9,4 @@ Please install Terminal Image Viewer(tiv) before running the game. Check out how
   The game is only being tested on Ubantu 20.04 LTS.
 
 ## Demo
-<script id="asciicast-4SblFOQ2uoK3ZKMV8XhWem7Li" src="https://asciinema.org/a/4SblFOQ2uoK3ZKMV8XhWem7Li.js" async></script>
+[![asciicast](https://asciinema.org/a/4SblFOQ2uoK3ZKMV8XhWem7Li.svg)](https://asciinema.org/a/4SblFOQ2uoK3ZKMV8XhWem7Li)
