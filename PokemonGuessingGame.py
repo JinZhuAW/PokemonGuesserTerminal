@@ -1,34 +1,70 @@
-import imp
 import sys
 import os
-import pokebase as pb
+import requests
 from random import randint
-# pikatro = pb.SpriteResource('pokemon', 20, other= True, official_artwort=True)
-# print(pikatro.path)
+import urllib.request
+
+api_url = "https://pokeapi.co/api/v2/pokemon/"
+
+def get_api_responds(index):
+    search = api_url + str(index)
+    response = requests.get(search)
+    return response
+
+def get_pokemon_name(response):
+    name = response.json()["name"]
+    return name
+
+def get_pokemon_sprite_url(response,answer):
+    if answer == True:
+        url = response.json()["sprites"]["other"]["official-artwork"]["front_default"]
+    else:
+        url = response.json()["sprites"]["front_default"]
+    return url
+
+
+def save_sprite(url):
+    filename = url.split('/')[-1]
+    urllib.request.urlretrieve(url, filename)
+    return filename
+
+def show_image(response,answer):
+    url = get_pokemon_sprite_url(response,answer)
+    filename = save_sprite(url)
+    os.system(f"tiv -h 40 -w 100 ./{filename}")
+    return filename
+
+def delete_image(filename):
+    os.system(f"rm {filename}")
 
 if __name__ == "__main__":
-        GAME_MENU = True
-        while GAME_MENU:
-            print("======Welcome to Pokeman Guessing Game=====")
-            r_num = randint(1,898)
-            rdm_pkm_sprt = pb.SpriteResource('pokemon' ,r_num,other=True, official_artwork=True)
-            rdm_pkm_resource = pb.APIResource('pokemon',r_num)
-            os.system(f"tiv {rdm_pkm_sprt.path}")
-            user_input = input("Please guess the name of the pokemon: ")
-            while rdm_pkm_resource.name != user_input.lower():
-                user_input = input("Wrong Answer! Please try again or type a to get the answer: ")
-                if user_input != "a":
-                    continue
-                else:
-                    print("The Answer is " + rdm_pkm_resource.name)
-                    break
-            if rdm_pkm_resource == user_input:
-                print("Well done! You are a Pokemon Expert!")
+    GAME_MENU = True
+    while GAME_MENU:
+        print("======Welcome to Pokeman Guessing Game=====")
+        r_num = randint(1,151)
+        response = get_api_responds(r_num)
+        name = get_pokemon_name(response)
+        filename = show_image(response,False)
+        user_input = input("Please guess the name of the pokemon: ")
+        while name != user_input.lower():
+            user_input = input("Wrong Answer! Please try again or type a to get the answer: ")
+            if user_input != "a":
+                continue
             else:
-                user_input2 = input("Press Enter to continue or q to quit:")
-                if user_input2 == "q":
-                    sys.exit()
-                else:
-                    print("\n")
+                show_image(response,True)
+                print("The Answer is " + name)
+                print("\n")
+                break
+        if name == user_input.lower():
+            show_image(response,True)
+            print("Well done! You are a Pokemon Expert!")
+            print("\n")
+        user_input2 = input("Press Enter to continue or q to quit:")
+        if user_input2 == "q":
+            delete_image(filename)
+            sys.exit()
+        else:
+            delete_image(filename)
+            print("\n")
 
             
