@@ -31,7 +31,7 @@ def save_sprite(url):
 def show_image(response,answer):
     url = get_pokemon_sprite_url(response,answer)
     filename = save_sprite(url)
-    os.system(f"tiv -h 40 -w 100 ./{filename}")
+    os.system(f"tiv ./{filename}")
     return filename
 
 def delete_image(filename):
