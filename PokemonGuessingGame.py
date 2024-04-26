@@ -41,7 +41,7 @@ if __name__ == "__main__":
     GAME_MENU = True
     while GAME_MENU:
         print("======Welcome to Pokeman Guessing Game=====")
-        r_num = randint(1,151)
+        r_num = randint(1,152)
         response = get_api_responds(r_num)
         name = get_pokemon_name(response)
         filename = show_image(response,False)
